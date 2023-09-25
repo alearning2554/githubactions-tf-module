@@ -16,10 +16,12 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-      - name: github commands
-        run: |
-          git config --global user.name ${{ secrets.USERNAME }}
-          git config --global user.password ${{ secrets.TOKEN }}
-          git config --global credential.helper store
+    - name: Configure Git 
+      run: |
+        echo "machine github.com login username password ${TOKEN}" > ~/.netrc
+        git config --global url."https://github.com/".insteadOf "git://github.com/"
+        git config --global advice.detachedHead false
+      env:
+        TOKEN: ${{ secrets.TOKEN }}
       - name: initilization
         run: terraform init
