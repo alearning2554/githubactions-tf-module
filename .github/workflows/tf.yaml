@@ -1,0 +1,20 @@
+name: terraform
+on:
+  push:
+    branches:
+      - master
+defaults:
+  run:
+    working-directory: ./
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: authenticating to google
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+      - name: initilization
+        run: terraform init
