@@ -1,3 +1,3 @@
 module "my_module" {
-  source = "git::https://github.com/alearning2554/terraform-module.git"
+  source = "git::https://alearning2554@github.com/alearning2554/terraform-module.git"
 }
