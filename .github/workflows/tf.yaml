@@ -16,5 +16,9 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+      - name: github commands
+        run: |
+          git config --global user.password ${{ secrets.TOKEN }}
+          git config --global credential.helper store
       - name: initilization
         run: terraform init
