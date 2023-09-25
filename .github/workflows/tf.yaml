@@ -18,6 +18,7 @@ jobs:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
       - name: github commands
         run: |
+          git config --global user.name ${{ secrets.USERNAME }}
           git config --global user.password ${{ secrets.TOKEN }}
           git config --global credential.helper store
       - name: initilization
